@@ -56,7 +56,7 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
     * Handler to prepare matched data for the rendering process.
     *
     */
-    function handle($match, $state, $pos, &$handler){
+    function handle($match, $state, $pos, Doku_Handler $handler){
 	$data = array();
 
 	// get page info
