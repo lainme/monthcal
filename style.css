@@ -24,7 +24,7 @@ div.dokuwiki table.monthcal tr th {
 div.dokuwiki table.monthcal tr th {
 	text-align: center;
 	font-weight: bold;
-	background-color: #eee;
+	background-color: @ini_background_alt;
 }
 
 div.dokuwiki table.monthcal.left {
@@ -43,5 +43,5 @@ div.dokuwiki table.monthcal td.today {
 	border: 0;
 }
 .withborder {
-	border: 1px solid #ccc;
+	border: 1px solid @ini_border;
 }
