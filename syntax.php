@@ -280,7 +280,7 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
         $html .= html_wikilink($data['namespace'] . ':' . $date_next_month->format('Y') . ':' . $date_next_month->format('m') . ':', '>>');
     }
     $html .= '</td>';
-    $html .= '<td class="year" colspan="' . $colspan_year . '">' . $date_from->format('Y') . '</td></tr>';
+    $html .= '<td class="year ' . $css_td_border . '" colspan="' . $colspan_year . '">' . $date_from->format('Y') . '</td></tr>';
 
     // swap weekdays if week starts at Sunday
     if ($data['week_start_on'] == 1) { $weekdays=array($weekdays[6],$weekdays[0],$weekdays[1],$weekdays[2],$weekdays[3],$weekdays[4],$weekdays[5]);}
