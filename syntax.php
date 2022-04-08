@@ -287,7 +287,7 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
 
     // append empty header for week numbers
     if ($data['display_weeks'] == '1') {
-        array_unshift($weekdays,"");
+        array_unshift($weekdays,$this->getLang['monthcal_week']);
     }
 
     // weekdays

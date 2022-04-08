@@ -24,5 +24,6 @@ $lang['monthcal_months'] = array(
 
 // weekdays
 $lang['monthcal_weekdays'] = array('一','二','三','四','五','六','日');
+$lang['monthcal_week'] = "周";
 
 ?>
