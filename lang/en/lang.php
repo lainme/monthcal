@@ -25,5 +25,6 @@ $lang['monthcal_months'] = array(
 // weekdays
 $lang['monthcal_weekdays'] = array('M','T','W','T','F','S','S');
 $lang['monthcal_week'] = "W";
+$lang['monthcal_week_link'] = "%Y-W%W";
 
 ?>

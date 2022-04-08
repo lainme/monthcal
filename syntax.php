@@ -333,7 +333,7 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
 
             if ($data['display_weeks'] == '1') {
                 if ($data['create_links_on_weeks'] == '1' ) {
-                    $pagename = $date->format('Y') . '-W' .$date->format('W');
+                    $pagename = strftime($this->getLang('monthcal_week_link'), strtotime($date->format('Y-m-d')));
                     $pagelink = $data['namespace'] . ':' . $pagename;
                     if (($data['do_not_create_past_links'] == '1') and ($date->format('Ymd') <  $date_today->format('Ymd'))) {
                         $page_exists = null;
