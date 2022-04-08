@@ -69,7 +69,7 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
     $data['week_start_on'] = 0;
     $data['display_weeks'] = 0;
     $data['create_links_on_days'] = 1;
-    $data['create_links_on_weeks'] = 1;
+    $data['create_links_on_weeks'] = 0;
     $data['do_not_create_past_links'] = 0;
     $data['create_prev_next_links'] = 0;
     $data['mark_today'] = 1;
