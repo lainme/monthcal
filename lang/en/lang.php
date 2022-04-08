@@ -8,21 +8,21 @@
 
 // months
 $lang['monthcal_months'] = array(
-				'January', 
-				'Febuary', 
-				'March', 
-				'April', 
-				'May', 
+				'January',
+				'Febuary',
+				'March',
+				'April',
+				'May',
 				'June',
-				'July', 
-				'August', 
-				'September', 
-				'October', 
-				'November', 
+				'July',
+				'August',
+				'September',
+				'October',
+				'November',
 				'December'
 				);
 
 // weekdays
-$lang['monthcal_weekdays_short'] = array('M','T','W','T','F','S','S');
+$lang['monthcal_weekdays'] = array('M','T','W','T','F','S','S');
 
 ?>

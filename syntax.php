@@ -218,7 +218,7 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
     $date_from_on_weekday = $date_from->format('N');
 
     // language specific
-    $weekdays = $this->getLang('monthcal_weekdays_short');
+    $weekdays = $this->getLang('monthcal_weekdays');
     $months   = $this->getLang('monthcal_months');
 
     // weekday variable which is used inside each loop
