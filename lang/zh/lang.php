@@ -5,6 +5,9 @@
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Milosz Galazka <milosz@sleeplessbeastie.eu>
  */
+if ($conf['lang'] == 'zh') {
+    setlocale(LC_TIME, 'zh_CN.UTF-8');
+}
 
 // months
 $lang['monthcal_months'] = array(
