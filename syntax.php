@@ -71,7 +71,6 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
     $data['create_links_on_days'] = 1;
     $data['create_links_on_weeks'] = 0;
     $data['do_not_create_past_links'] = 0;
-    $data['create_prev_next_links'] = 0;
     $data['mark_today'] = 1;
     $data['borders'] = 0;
     $data['align'] = 0;
@@ -139,16 +138,6 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
                         break;
                     default:
                         $data['do_not_create_past_links'] = 1;
-                        break;
-                }
-                break;
-            case 'create_prev_next_links':
-                switch(strtolower($value)) {
-                    case 'no':
-                        $data['create_prev_next_links'] = 0;
-                        break;
-                    default:
-                        $data['create_prev_next_links'] = 1;
                         break;
                 }
                 break;
@@ -289,10 +278,6 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
     // header
     $html .= '<tr class="description">';
     $html .= '<td class="month ' . $css_td_border . '" colspan="' . $colspan_month . '">' . $months[$date_from->format('m')-1] . ' ';
-    if ($data['create_prev_next_links']){
-        $html .= html_wikilink($data['namespace'] . ':' . $date_prev_month->format('Y') . ':' . $date_prev_month->format('m') . ':', '<<');
-        $html .= html_wikilink($data['namespace'] . ':' . $date_next_month->format('Y') . ':' . $date_next_month->format('m') . ':', '>>');
-    }
     $html .= '</td>';
     $html .= '<td class="year ' . $css_td_border . '" colspan="' . $colspan_year . '">' . $date_from->format('Y') . '</td></tr>';
 
