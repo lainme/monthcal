@@ -9,20 +9,20 @@ div.dokuwiki table.monthcal tr.description td {
 	background: none;
 }
 div.dokuwiki table.monthcal tr.description td.month {
-	text-align: left;
+	text-align: left !important;
 }
 div.dokuwiki table.monthcal tr.description td.year {
-	text-align: right;
+	text-align: right !important;
 	font-weight: bolder;
 }
 
 div.dokuwiki table.monthcal tr td,
 div.dokuwiki table.monthcal tr th {
-	text-align: center;
+	text-align: center !important;
 }
 
 div.dokuwiki table.monthcal tr th {
-	text-align: center;
+	text-align: center !important;
 	font-weight: bold;
 	background-color: @ini_background_alt;
 }
