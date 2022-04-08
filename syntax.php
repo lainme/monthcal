@@ -69,6 +69,7 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
     $data['week_start_on'] = 0;
     $data['display_weeks'] = 0;
     $data['create_links_on_days'] = 1;
+    $data['create_links_on_weeks'] = 1;
     $data['do_not_create_past_links'] = 0;
     $data['create_prev_next_links'] = 0;
     $data['mark_today'] = 1;
@@ -115,6 +116,19 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
                         break;
                     default:
                         $data['create_links_on_days'] = 1;
+                        break;
+                }
+                break;
+            case 'create_links_on_weeks':
+                switch(strtolower($value)) {
+                    case 'no':
+                        $data['create_links_on_weeks'] = 0;
+                        break;
+                    case 'local':
+                        $data['create_links_on_weeks'] = 2;
+                        break;
+                    default:
+                        $data['create_links_on_weeks'] = 1;
                         break;
                 }
                 break;
@@ -318,7 +332,26 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
             $html .= "<tr>";
 
             if ($data['display_weeks'] == '1') {
-                $html .= '<td class="' . $css_td_border . '">' . $date->format("W") . '</td>';
+                if ($data['create_links_on_weeks'] == '1' ) {
+                    $pagename = $date->format('Y') . '-W' .$date->format('W');
+                    $pagelink = $data['namespace'] . ':' . $pagename;
+                    if (($data['do_not_create_past_links'] == '1') and ($date->format('Ymd') <  $date_today->format('Ymd'))) {
+                        $page_exists = null;
+                        resolve_pageid($data['namespace'], $pagename, $page_exists);
+                        if ($page_exists) {
+                            $html_week = html_wikilink($pagelink, $date->format('W'));
+                        } else {
+                            $html_week = $date->format('W');
+                        }
+                    } else {
+                        $html_week = html_wikilink($pagelink, $date->format('W'));
+                    }
+                } else if ($data['create_links_on_weeks'] == '2' ) {
+                    $html_week = '<a href="#section' . $pagename . '">' . $date->format('W') . '</a>';
+                } else {
+                    $html_week = $date->format('W');
+                }
+                $html .= '<td class="' . $css_td_border . '">' . $html_week . '</td>';
             }
         }
 
