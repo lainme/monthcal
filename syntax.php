@@ -299,7 +299,32 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
 
     // initial week number
     if ($data['display_weeks'] == '1') {
-        $html .= '<td class="' . $css_td_border . '">' . $date_from->format("W") . '</td>';
+        $date = $date_from;
+        if ($data['create_links_on_weeks'] == '1' ) {
+            if ($conf['lang'] == 'zh') {
+                setlocale(LC_TIME, 'zh_CN.UTF-8');
+            }
+            $date_1st = (new DateTime($date->format('Ymd')))->modify('this week');
+            $date_7nd = (new DateTime($date->format('Ymd')))->modify('this week +6 days');
+            $pagename = strftime($this->getLang('monthcal_week_link'), strtotime($date->format('Ymd'))).'-'.$date_1st->format('m.d').'-'.$date_7nd->format('m.d');
+            $pagelink = $data['namespace'] . ':' . $pagename;
+            if (($data['do_not_create_past_links'] == '1') and ($date_7nd->format('Ymd') < $date_today->format('Ymd'))) {
+                $page_exists = null;
+                resolve_pageid($data['namespace'], $pagename, $page_exists);
+                if ($page_exists) {
+                    $html_week = html_wikilink($pagelink, $date->format('W'));
+                } else {
+                    $html_week = $date->format('W');
+                }
+            } else {
+                $html_week = html_wikilink($pagelink, $date->format('W'));
+            }
+        } else if ($data['create_links_on_weeks'] == '2' ) {
+            $html_week = '<a href="#section' . $pagename . '">' . $date->format('W') . '</a>';
+        } else {
+            $html_week = $date->format('W');
+        }
+        $html .= '<td class="' . $css_td_border . '">' . $html_week . '</td>';
     }
 
     // first empty days
@@ -321,11 +346,11 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
                     if ($conf['lang'] == 'zh') {
                         setlocale(LC_TIME, 'zh_CN.UTF-8');
                     }
-                    $date_1st = $date->format('m.d');
-                    $date_7nd = ((new DateTime($date_1st))->modify('+7 day'))->format('m.d');
-                    $pagename = strftime($this->getLang('monthcal_week_link'), strtotime($date->format('Y-m-d'))).'-'.$date_1st.'-'.$date_7nd;
+                    $date_1st = (new DateTime($date->format('Ymd')))->modify('this week');
+                    $date_7nd = (new DateTime($date->format('Ymd')))->modify('this week +6 days');
+                    $pagename = strftime($this->getLang('monthcal_week_link'), strtotime($date->format('Ymd'))).'-'.$date_1st->format('m.d').'-'.$date_7nd->format('m.d');
                     $pagelink = $data['namespace'] . ':' . $pagename;
-                    if (($data['do_not_create_past_links'] == '1') and ($date->format('Ymd') <  $date_today->format('Ymd'))) {
+                    if (($data['do_not_create_past_links'] == '1') and ($date_7nd->format('Ymd') < $date_today->format('Ymd'))) {
                         $page_exists = null;
                         resolve_pageid($data['namespace'], $pagename, $page_exists);
                         if ($page_exists) {
