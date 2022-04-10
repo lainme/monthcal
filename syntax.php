@@ -67,12 +67,12 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
     $data['year'] =  date('Y');
     $data['namespace'] = $INFO['namespace'];
     $data['week_start_on'] = 0;
-    $data['display_weeks'] = 0;
-    $data['create_links_on_days'] = 1;
-    $data['create_links_on_weeks'] = 0;
-    $data['do_not_create_past_links'] = 0;
+    $data['display_weeks'] = 1;
+    $data['create_links_on_days'] = 0;
+    $data['create_links_on_weeks'] = 1;
+    $data['do_not_create_past_links'] = 1;
     $data['mark_today'] = 1;
-    $data['borders'] = 0;
+    $data['borders'] = 1;
     $data['align'] = 0;
 
     $provided_data = substr($match, 11, -2);
