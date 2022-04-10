@@ -321,7 +321,9 @@ class syntax_plugin_monthcal extends DokuWiki_Syntax_Plugin {
                     if ($conf['lang'] == 'zh') {
                         setlocale(LC_TIME, 'zh_CN.UTF-8');
                     }
-                    $pagename = strftime($this->getLang('monthcal_week_link'), strtotime($date->format('Y-m-d')));
+                    $date_1st = $date->format('m.d');
+                    $date_7nd = ((new DateTime($date_1st))->modify('+7 day'))->format('m.d');
+                    $pagename = strftime($this->getLang('monthcal_week_link'), strtotime($date->format('Y-m-d'))).'-'.$date_1st.'-'.$date_7nd;
                     $pagelink = $data['namespace'] . ':' . $pagename;
                     if (($data['do_not_create_past_links'] == '1') and ($date->format('Ymd') <  $date_today->format('Ymd'))) {
                         $page_exists = null;
